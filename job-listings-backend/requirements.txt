@@ -1,0 +1,7 @@
+azure-cosmos
+bs4
+Flask
+pandas
+requests
+selenium
+webdriver-manager

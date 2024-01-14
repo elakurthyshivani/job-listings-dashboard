@@ -1,0 +1,14 @@
+nav   {
+    background-color: lightcyan;
+    height: 100%;
+}
+.nav-link   {
+    text-align: left;
+    border-radius: 4px;
+    transition: 0.4s !important;
+
+    &:hover   {
+        background-color: lightskyblue;
+        color: navy !important;
+    }
+}

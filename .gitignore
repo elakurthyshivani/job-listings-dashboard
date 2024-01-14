@@ -1,0 +1,28 @@
+scripts/
+
+# Flask
+.venv/
+job-listings-backend/__pycache__/
+
+# React
+# dependencies
+job-listings-frontend/node_modules/
+job-listings-frontend/.pnp
+job-listings-frontend/.pnp.js
+
+# testing
+job-listings-frontend/coverage
+
+# production
+job-listings-frontend/build
+
+# misc
+job-listings-frontend/.DS_Store
+job-listings-frontend/.env.local
+job-listings-frontend/.env.development.local
+job-listings-frontend/.env.test.local
+job-listings-frontend/.env.production.local
+
+job-listings-frontend/npm-debug.log*
+job-listings-frontend/yarn-debug.log*
+job-listings-frontend/yarn-error.log*
