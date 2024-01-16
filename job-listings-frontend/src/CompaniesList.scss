@@ -1,14 +1,22 @@
+@import "Variables";
+
 nav   {
     background-color: lightcyan;
     height: 100%;
+    overflow: auto;
+    // border-top-left-radius: 4px !important;
+    // border-bottom-left-radius: 4px !important;
 }
 .nav-link   {
+    display: block;
     text-align: left;
-    border-radius: 4px;
-    transition: 0.4s !important;
+    color: dodgerblue !important;
+    border-radius: $border-radius;
+    transition: $transition-secs !important;
 
     &:hover   {
         background-color: lightskyblue;
-        color: navy !important;
+        color: mediumblue !important;
+        font-weight: bold;
     }
 }

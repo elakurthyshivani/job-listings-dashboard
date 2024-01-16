@@ -1,3 +1,5 @@
+@import "Variables";
+
 html, body, div#root {
     margin: 0;
     padding: 0;
@@ -6,7 +8,7 @@ html, body, div#root {
 }
 
 body  {
-    font-family: 'Roboto', 'Helvetica Neue', sans-serif;
+    font-family: 'Roboto', 'Candara', sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
@@ -19,4 +21,22 @@ code {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+}
+
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background-color: transparent; 
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: $border-radius;
+    background-color: skyblue;
+    transition: $transition-secs !important;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: deepskyblue; 
 }
