@@ -1,17 +1,22 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import './JobListings.scss';
+import { CompanyNameContext } from './Context';
 
 const status = ["Not Applied", "New", "Applied"];
 const statusClasses = ["not-applied", "new", "applied"];
 
 function Job(props)  {
     return (
-        <tr className={"p-1 " + statusClasses[props.job.Status]}>
+        <tr className={statusClasses[props.job.Status]}>
+            <td><input type="checkbox" name={props.job.JobID} /></td>
             <td>{ props.job.JobID }</td>
             <td className="col-6">
                 <a href={props.job.Link} target="_blank">{ props.job.Title }</a>
             </td>
-            <td className="text-center">{ props.job.DaysOld }</td>
+            <td className={"text-center days-old " + (props.job.DaysOld <= 7 ? "within-week" : 
+                                                (props.job.DaysOld <=30 ? "within-month" : ""))}>
+                { props.job.DaysOld }
+            </td>
             <td className="job-status">
                 <span className="rounded-pill">{ status[props.job.Status] }</span>
             </td>
@@ -29,9 +34,12 @@ function Jobs(props)  {
 }
 
 function JobListings() {
+    const companyName = useContext(CompanyNameContext);
+    const url = "https://job-listings-dashboard.azurewebsites.net/companies/" + companyName;
+
     const [jobs, setJobs] = useState("");
     const getJobs = async () => {
-        const response = await fetch('https://job-listings-dashboard.azurewebsites.net/companies/Discover', {
+        const response = await fetch(url, {
             headers: {
                 "Access-Control-Allow-Origin": "*",
                 Accept: 'application/json'
@@ -47,16 +55,17 @@ function JobListings() {
     }
     useEffect(() => {
         getJobs();
-    }, []);
+    }, [companyName]);
 
     return (
-        <main className="table-responsive col h-100 p-3">
-            <header className="fw-bold fs-1">
-                Company Name
+        <main className="table-responsive col h-100 p-4">
+            <header>
+                <div className="fw-bold fs-2">{companyName}</div>
             </header>
             <table className="table">
                 <tbody>
-                    <tr className="p-1">
+                    <tr className="p-2">
+                        <th></th>
                         <th>Job ID</th>
                         <th>Title</th>
                         <th className="text-center">Days Old</th>

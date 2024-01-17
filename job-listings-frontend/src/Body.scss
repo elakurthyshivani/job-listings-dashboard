@@ -1,0 +1,27 @@
+@import "Variables";
+
+nav   {
+    background-color: dodgerblue;//lightcyan;
+    height: 100%;
+    overflow: auto;
+    border-top-left-radius: $border-radius-page;
+    border-bottom-left-radius: $border-radius-page;
+}
+.nav-link   {
+    display: block;
+    text-align: left;
+    color: lightcyan !important;
+    border-radius: $border-radius;
+    transition: $transition-secs !important;
+
+    &:hover   {
+        background-color: rgba(white, 0.1);
+        color: mediumblue !important;
+    }
+}
+
+.active   {
+    background-color: rgba(white, 0.1);
+    color: mediumblue !important;
+    font-weight: bold;
+}
