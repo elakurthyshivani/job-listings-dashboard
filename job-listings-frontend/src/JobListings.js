@@ -65,7 +65,7 @@ function JobListings() {
             <table className="table">
                 <tbody>
                     <tr className="p-2">
-                        <th></th>
+                        <th><input type="checkbox" name="select-all" /></th>
                         <th>Job ID</th>
                         <th>Title</th>
                         <th className="text-center">Days Old</th>

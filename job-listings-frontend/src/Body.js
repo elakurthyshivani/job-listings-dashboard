@@ -5,7 +5,6 @@ import { CompanyNameContext } from './Context';
 
 
 function NavItem(props) {
-    console.log(props);
     return (
         <button className={props.companyName == props.currentCompany? "nav-link active w-100" : "nav-link w-100" }
                 key={props.companyName} type="button" 
@@ -37,7 +36,6 @@ function Body() {
     }, []);
 
     const showJobs = (e) => {
-        // console.log(e.target);
         setCurrCompany(e.target.name);
     };
 
