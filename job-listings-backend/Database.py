@@ -41,5 +41,6 @@ def getJobListings(container, companyName):
                 "Link": details["Link"],
                 "Status": details["Status"]
             })
+        newListings.sort(key=lambda job: job["DaysOld"])
         jobListings[0]["Jobs"] = newListings
         return jobListings[0]
