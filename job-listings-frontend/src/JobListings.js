@@ -8,7 +8,7 @@ const statusClasses = ["not-applied", "new", "applied"];
 function Job(props)  {
     return (
         <tr className={statusClasses[props.job.Status]}>
-            <td><input type="checkbox" name={props.job.JobID} /></td>
+            <td><input type="checkbox" name={props.job.JobID} onChange={toggleJobSelection} /></td>
             <td>{ props.job.JobID }</td>
             <td className="col-6">
                 <a href={props.job.Link} target="_blank">{ props.job.Title }</a>
@@ -24,6 +24,19 @@ function Job(props)  {
         </tr>
     );
 }
+
+const toggleJobSelection = (e) => {
+    try {
+        var parentNode = e.target.parentNode.parentNode;
+        if (parentNode.classList.contains("selected"))
+            parentNode.classList.remove("selected");
+        else    
+            parentNode.classList.add("selected");
+    } 
+    catch (e)  {
+        console.log(e);
+    }
+};
 
 function Jobs(props)  {
     return (
