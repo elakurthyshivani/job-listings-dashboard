@@ -1,13 +1,13 @@
 @import "Variables";
 
 nav   {
-    background-color: dodgerblue;//lightcyan;
+    background-color: ghostwhite;
     height: 100%;
     overflow: auto;
 }
 
 .logo-container {
-    margin-bottom: 32px;
+    margin-bottom: 16px;
 
     img {
         width: 32px;
@@ -16,21 +16,26 @@ nav   {
     }
 }
 
+.site-category  {
+    color: $gray-6;
+    font-variant: small-caps;
+}
+
 .nav-link   {
     display: block;
     text-align: left;
-    color: lightcyan !important;
+    color: $gray-primary !important;
     border-radius: $border-radius;
     transition: $transition-secs !important;
 
     &:hover   {
-        background-color: rgba(white, 0.1);
-        color: mediumblue !important;
+        background-color: $gray-EF;
+        color: $blue !important;
     }
 }
 
 .active   {
-    background-color: rgba(white, 0.1);
-    color: mediumblue !important;
+    background-color: $gray-EF;
+    color: $blue !important;
     font-weight: bold;
 }

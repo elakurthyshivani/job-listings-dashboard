@@ -3,10 +3,13 @@ import './Body.scss';
 import JobListings from './JobListings';
 import { CompanyNameContext } from './Context';
 
+const siteTypes = {"own-site-job-listings": "Own Site", 
+                    "group-1-job-listings": "Search App", 
+                    "workday-job-listings": "Workday"};
 
 function NavItem(props) {
     return (
-        <button className={props.companyName == props.currentCompany? "nav-link active w-100" : "nav-link w-100" }
+        <button className={props.companyName == props.currentCompany? "nav-link active w-100 fw-bold" : "nav-link w-100 fw-bold" }
                 key={props.companyName} type="button" 
                 name={props.companyName} role="tab"
                 onClick={props.showJobs}>{props.companyName}</button>
@@ -42,17 +45,29 @@ function Body() {
     return (
         <div className="d-flex align-items-start w-100 h-100">
             <CompanyNameContext.Provider value={useMemo(() => currCompany)}>
-                <nav className="nav col-2 h-100 p-3" role="tablist" aria-orientation="vertical">
+                <nav className="nav col-2 h-100 py-3 px-4" role="tablist" aria-orientation="vertical">
                     <div className="logo-container d-flex justify-content-center align-items-center">
                         <img src="favicon.png" />
-                        <div className="fw-bold">Job Listings Dashboard</div>
+                        {/* <div className="fw-bold">Job Listings Dashboard</div> */}
                     </div>
+                    
                     { Object.keys(companies).includes("data") ? 
-                        companies.data.map((companyName) => <NavItem key={companyName}
-                                                                companyName = {companyName} 
+                        Object.keys(companies.data).map(category => 
+                            <>
+                                <div className="w-100 fw-bold pb-2 pt-3 site-category">{siteTypes[category]}</div>
+                                { companies.data[category].map((companyName) => <NavItem key={companyName}
+                                                                                    companyName = {companyName} 
+                                                                                    currentCompany = {currCompany}
+                                                                                    showJobs = {showJobs} />) }
+                            </> ) : 
+                        companies.error}
+
+                    {/* { Object.keys(companies).includes("data") ? 
+                        companies.data.map((companyName) => <NavItem key={companyName.id}
+                                                                companyName = {companyName.id} 
                                                                 currentCompany = {currCompany}
                                                                 showJobs = {showJobs} />) : 
-                        companies.error }
+                        companies.error } */}
                 </nav>
                 <JobListings />
             </CompanyNameContext.Provider>
