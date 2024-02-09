@@ -4,9 +4,18 @@ nav   {
     background-color: dodgerblue;//lightcyan;
     height: 100%;
     overflow: auto;
-    border-top-left-radius: $border-radius-page;
-    border-bottom-left-radius: $border-radius-page;
 }
+
+.logo-container {
+    margin-bottom: 32px;
+
+    img {
+        width: 32px;
+        height: 32px;
+        margin-right: 16px;
+    }
+}
+
 .nav-link   {
     display: block;
     text-align: left;

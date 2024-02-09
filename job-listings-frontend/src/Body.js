@@ -43,6 +43,10 @@ function Body() {
         <div className="d-flex align-items-start w-100 h-100">
             <CompanyNameContext.Provider value={useMemo(() => currCompany)}>
                 <nav className="nav col-2 h-100 p-3" role="tablist" aria-orientation="vertical">
+                    <div className="logo-container d-flex justify-content-center align-items-center">
+                        <img src="favicon.png" />
+                        <div className="fw-bold">Job Listings Dashboard</div>
+                    </div>
                     { Object.keys(companies).includes("data") ? 
                         companies.data.map((companyName) => <NavItem key={companyName}
                                                                 companyName = {companyName} 
