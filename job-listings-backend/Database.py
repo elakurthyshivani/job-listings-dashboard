@@ -13,11 +13,20 @@ def getDatabase():
     # return g.database   
     return database
 
-def getCompanyNames(container):
-    companyNames = container.query_items("SELECT c.id FROM c ORDER BY c.id ASC",
+def getContainerNames(container):
+    containerNames = container.query_items("SELECT DISTINCT c.ContainerName FROM c ORDER BY c.id ASC",
                                          enable_cross_partition_query = True)
-    companyNames = [company["id"] for company in companyNames]
-    return companyNames
+    containerNames = [containerName["ContainerName"] for containerName in containerNames]
+    return containerNames
+
+def getCompanyNames(container):
+    companyNames = container.query_items("SELECT c.id, c.ContainerName FROM c ORDER BY c.id ASC",
+                                         enable_cross_partition_query = True)
+    companyNames = [company for company in companyNames]
+    containerNames = {containerName: [] for containerName in getContainerNames(container)}
+    for companyName in companyNames:
+        containerNames[companyName["ContainerName"]].append(companyName["id"])
+    return containerNames
 
 def getContainerName(container, companyName):
     containerName = container.query_items(f"SELECT c.ContainerName FROM c WHERE c.id='{companyName}'",
