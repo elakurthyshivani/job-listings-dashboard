@@ -11,7 +11,7 @@ main    {
 
 .table th   {
     font-variant: small-caps;
-    color: cornflowerblue;
+    color: $gray-6;
     padding: 0px 12px 4px 12px;
 }
 
@@ -19,8 +19,8 @@ main    {
     transition: $transition-secs;
     border-bottom: 1px solid #DDD;
 
-    td  {
-        padding: 12px !important;
+    td div  {
+        padding: 4px 12px !important;
         transition: $transition-secs;
 
         a {
@@ -29,16 +29,20 @@ main    {
             text-decoration: none;
         }
     }
+
+    th div {
+        padding: 4px 8px !important;
+    }
 }
 
 .table tr:hover, .table tr.selected {
     border-radius: $border-radius !important;
 
     td {
-        background: rgba($gray-EF, 0.5);//rgba(paleturquoise, 0.65) !important;
+        background: rgba($gray-EF, 0.5);
 
         a {
-            color: navy !important;
+            color: limegreen !important;
             font-weight: bold;
         }
     }
@@ -48,11 +52,17 @@ main    {
     font-weight: bold;
 } 
 
-.table td.job-status span  {
+.table td.job-status span.rounded-pill  {
     padding: 4px 8px;
     border-radius: $border-radius;
     font-size: 0.8em;
     font-weight: bold;
+    cursor: pointer;
+    transition: $transition-secs;
+}
+
+.table tr td.job-status span.rounded-pill .edit-icon {
+    font-size: 0.9em;
 }
 
 .table td.days-old  {
@@ -67,17 +77,51 @@ main    {
     color: darkorange;
 }
 
-.table tr.new td.job-status span  {
+.table tr.new td.job-status span.rounded-pill  {
     color: $job-status-new-pill-color;
     background-color: rgba($job-status-new-pill-color, $job-status-pill-background-opacity);
+
+    &:hover {
+        color: $job-status-hover-new-pill-color;
+        background-color: rgba($job-status-new-pill-color, $job-status-pill-hover-background-opacity);
+    }
 }
 
-.table tr.applied td.job-status span  {
+.table tr.applied td.job-status span.rounded-pill  {
     color: $job-status-applied-pill-color;
     background-color: rgba($job-status-applied-pill-color, $job-status-pill-background-opacity);
+
+    &:hover {
+        color: $job-status-hover-applied-pill-color;
+        background-color: rgba($job-status-applied-pill-color, $job-status-pill-hover-background-opacity);
+    }
 }
 
-.table tr.not-applied td.job-status span  {
+.table tr.not-applied td.job-status span.rounded-pill  {
     color: $job-status-not-applied-pill-color;
     background-color: rgba($job-status-not-applied-pill-color, $job-status-pill-background-opacity);
+
+    &:hover {
+        color: $job-status-not-applied-pill-color;
+        background-color: rgba($job-status-not-applied-pill-color, $job-status-pill-hover-background-opacity);
+    }
+}
+
+.table tr td div.icons {
+    padding: 0px !important;
+}
+.table tr .icon  {
+    color: tomato;
+    padding: 4px;
+    border-radius: 50%;
+    width: 28px;
+    height: 28px;
+    font-size: 0.8em;
+    cursor: pointer;
+    transition: $transition-secs;
+
+    &:hover {
+        color: rgb(205, 55, 28);
+        background-color: $gray-D;
+    }
 }

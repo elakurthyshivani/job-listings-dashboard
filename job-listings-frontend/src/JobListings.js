@@ -1,6 +1,11 @@
+import {React} from 'react';
+import 'bootstrap/dist/css/bootstrap.css';
 import { useState, useEffect, useContext } from 'react';
 import './JobListings.scss';
 import { CompanyNameContext } from './Context';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
+import { faTrashCan } from '@fortawesome/free-regular-svg-icons';
 
 const status = ["Not Applied", "New", "Applied"];
 const statusClasses = ["not-applied", "new", "applied"];
@@ -8,19 +13,37 @@ const statusClasses = ["not-applied", "new", "applied"];
 function Job(props)  {
     return (
         <tr className={statusClasses[props.job.Status]}>
-            <td><input type="checkbox" name={props.job.JobID} onChange={toggleJobSelection} /></td>
-            <td>{ props.job.JobID }</td>
+            <td><div>
+                <input type="checkbox" name={props.job.JobID} onChange={toggleJobSelection} />
+            </div></td>
+            <td><div>{ props.job.JobID }</div></td>
             <td className="col-6">
-                <a href={props.job.Link} target="_blank">{ props.job.Title }</a>
+                <div><a href={props.job.Link} target="_blank">{ props.job.Title }</a></div>
             </td>
             <td className={"text-center days-old " + (props.job.DaysOld <= 7 ? "within-week" : 
                                                 (props.job.DaysOld <=30 ? "within-month" : ""))}>
-                { props.job.DaysOld }
+                <div>{ props.job.DaysOld }</div>
             </td>
             <td className="job-status">
-                <span className="rounded-pill">{ status[props.job.Status] }</span>
+                <div>
+                    <span className="rounded-pill">
+                        { status[props.job.Status] }
+                        <span className="ms-2 edit-icon">
+                            <FontAwesomeIcon icon={faChevronDown} />
+                        </span>
+                    </span>
+                    
+                </div>
             </td>
-            <td></td>
+            <td>
+                <div className="icons d-flex justify-content-center">
+                    <span className="icon d-flex justify-content-center align-items-center" data-bs-toggle="tooltip" 
+                            title="Marks as seen. Sets the Status to 'Not Applied'">
+                        <FontAwesomeIcon icon={faTrashCan} />
+                    </span>
+                </div>
+            </td>
+            {/* <td><FontAwesomeIcon icon={faEllipsisVertical} /></td> */}
         </tr>
     );
 }
@@ -78,7 +101,7 @@ function JobListings() {
             <table className="table">
                 <tbody>
                     <tr className="p-2">
-                        <th><input type="checkbox" name="select-all" /></th>
+                        <th><div><input type="checkbox" name="select-all" /></div></th>
                         <th>Job ID</th>
                         <th>Title</th>
                         <th className="text-center">Days Old</th>
