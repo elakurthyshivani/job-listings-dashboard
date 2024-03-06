@@ -2,6 +2,7 @@ import { useState, useEffect, useContext } from 'react';
 import './JobListings.scss';
 import { CompanyNameContext } from './Context';
 import Spinner from './Spinner';
+import NoResults from './NoResults';
 
 const status = ["Not Applied", "New", "Applied"];
 const statusClasses = ["not-applied", "new", "applied"];
@@ -98,6 +99,12 @@ function JobListings() {
                                 <></>) :
                             <></> }
                     </tbody>
+                    { Object.keys(jobs).includes("data") && Object.keys(jobs.data).includes("Jobs") &&
+                        jobs.data.Jobs.length == 0 ? 
+                        <caption>
+                            <NoResults />
+                        </caption> : <></>
+                    }
                 </table> 
             }
         </main>
