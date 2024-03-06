@@ -1,0 +1,23 @@
+@import "Variables";
+
+@keyframes rotate-spinner {
+    0% {transform: rotate(0deg);}
+    25%  {transform: rotate(90deg);}
+    50%  {transform: rotate(180deg);}
+    75%  {transform: rotate(270deg);}
+    100%  {transform: rotate(360deg);}
+}
+
+.spinner {
+    font-size: 1.25em;
+    font-weight: bold;
+    color: $gray-6;
+
+    .spinner-icon   {
+        animation-name: rotate-spinner;
+        animation-duration: 0.25s;
+        animation-iteration-count: infinite;
+        font-size: 1.5em;
+        color: $blue;
+    }
+}

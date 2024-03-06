@@ -1,6 +1,7 @@
 import { useState, useEffect, useContext } from 'react';
 import './JobListings.scss';
 import { CompanyNameContext } from './Context';
+import Spinner from './Spinner';
 
 const status = ["Not Applied", "New", "Applied"];
 const statusClasses = ["not-applied", "new", "applied"];
@@ -51,7 +52,9 @@ function JobListings() {
     const url = "https://job-listings-dashboard.azurewebsites.net/companies/" + companyName;
 
     const [jobs, setJobs] = useState("");
+    const [isLoading, setIsLoading] = useState(false);
     const getJobs = async () => {
+        setIsLoading(true);
         const response = await fetch(url, {
             headers: {
                 "Access-Control-Allow-Origin": "*",
@@ -61,9 +64,11 @@ function JobListings() {
         try {
             const json = await response.json();
             setJobs(json);
+            setIsLoading(false);
         }
         catch   {
             setJobs({"error": "Error loading data"});
+            setIsLoading(false);
         }
     }
     useEffect(() => {
@@ -71,27 +76,30 @@ function JobListings() {
     }, [companyName]);
 
     return (
-        <main className="table-responsive col h-100 p-4">
+        <main className="table-responsive col h-100 w-100 p-4">
             <header>
                 <div className="fw-bold fs-2">{companyName}</div>
             </header>
-            <table className="table">
-                <tbody>
-                    <tr className="p-2">
-                        <th><input type="checkbox" name="select-all" /></th>
-                        <th>Job ID</th>
-                        <th>Title</th>
-                        <th className="text-center">Days Old</th>
-                        <th>Status</th>
-                        <th></th>
-                    </tr>
-                    { Object.keys(jobs).includes("data") ?
-                        (Object.keys(jobs.data).includes("Jobs") ?
-                            <Jobs jobsList={jobs.data.Jobs} /> : 
-                            <></>) :
-                        <></> }
-                </tbody>
-            </table>
+            { isLoading ? 
+                <Spinner /> :
+                <table className="table">
+                    <tbody>
+                        <tr className="p-2">
+                            <th><input type="checkbox" name="select-all" /></th>
+                            <th>Job ID</th>
+                            <th>Title</th>
+                            <th className="text-center">Days Old</th>
+                            <th>Status</th>
+                            <th></th>
+                        </tr>
+                        { Object.keys(jobs).includes("data") ?
+                            (Object.keys(jobs.data).includes("Jobs") ?
+                                <Jobs jobsList={jobs.data.Jobs} /> : 
+                                <></>) :
+                            <></> }
+                    </tbody>
+                </table> 
+            }
         </main>
     );
 }
