@@ -198,12 +198,14 @@ function JobListings() {
                         <tr className="p-2">
                             <th>
                                 <div>
-                                    <input id="select-all" className="form-check-input" type="checkbox" 
-                                            name="select-all" ref={allCheckedRef} checked={allChecked}
-                                            onChange={() => toggleAllJobsSelection(allChecked, setAllChecked,
-                                                                                isChecked, setIsChecked,
-                                                                                setSelectedJobCount,
-                                                                                allCheckedRef)} />
+                                    { isChecked.length > 0 ?
+                                        <input id="select-all" className="form-check-input" type="checkbox" 
+                                                name="select-all" ref={allCheckedRef} checked={allChecked}
+                                                onChange={() => toggleAllJobsSelection(allChecked, setAllChecked,
+                                                                                    isChecked, setIsChecked,
+                                                                                    setSelectedJobCount,
+                                                                                    allCheckedRef)} /> : 
+                                        <></> }
                                 </div>
                             </th>
                             <th>Job ID</th>
