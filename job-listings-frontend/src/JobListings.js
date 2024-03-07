@@ -3,6 +3,8 @@ import 'bootstrap/dist/css/bootstrap.css';
 import { useState, useEffect, useContext, useRef } from 'react';
 import './JobListings.scss';
 import { CompanyNameContext, AllCheckedContext } from './Context';
+import Spinner from './Spinner';
+import NoResults from './NoResults';
 
 const status = ["Not Applied", "New", "Applied"];
 const statusClasses = ["not-applied", "new", "applied"];
@@ -142,8 +144,11 @@ function JobListings() {
     const url = "https://job-listings-dashboard.azurewebsites.net/companies/" + companyName;
 
     const [jobs, setJobs] = useState("");
+    const [isLoading, setIsLoading] = useState(false);
+  
     // Gets jobs from the API
     const getJobs = async () => {
+        setIsLoading(true);
         const response = await fetch(url, {
             headers: {
                 "Access-Control-Allow-Origin": "*",
@@ -160,6 +165,8 @@ function JobListings() {
             setSelectedJobCount(0);
             if (allCheckedRef.current != null)
                 allCheckedRef.current.indeterminate = false;
+          
+            setIsLoading(false);
         }
         catch   {
             setJobs({"error": "Error loading data"});
@@ -170,6 +177,8 @@ function JobListings() {
             setSelectedJobCount(0);
             if (allCheckedRef.current != null)
                 allCheckedRef.current.indeterminate = false;
+          
+            setIsLoading(false);
         }
     }
     // Call the API each time the "companyName" is changed.
@@ -178,39 +187,48 @@ function JobListings() {
     }, [companyName]);
 
     return (
-        <main className="table-responsive col h-100 p-4">
+        <main className="table-responsive col h-100 w-100 p-4">
             <header>
                 <div className="fw-bold fs-2">{companyName}</div>
             </header>
-            <table className="table">
-                <tbody>
-                    <tr className="p-2">
-                        <th>
-                            <div>
-                                <input id="select-all" className="form-check-input" type="checkbox" 
-                                        name="select-all" ref={allCheckedRef} checked={allChecked}
-                                        onChange={() => toggleAllJobsSelection(allChecked, setAllChecked,
-                                                                            isChecked, setIsChecked,
-                                                                            setSelectedJobCount,
-                                                                            allCheckedRef)} />
-                            </div>
-                        </th>
-                        <th>Job ID</th>
-                        <th>Title</th>
-                        <th className="text-center">Days Old</th>
-                        <th>Status</th>
-                    </tr>
-                    { Object.keys(jobs).includes("data") ?
-                        (Object.keys(jobs.data).includes("Jobs") ?
-                        <AllCheckedContext.Provider 
-                            value={[setAllChecked, isChecked, setIsChecked,
-                                    selectedJobCount, setSelectedJobCount, allCheckedRef]}>
-                            <Jobs jobsList={jobs.data.Jobs} />
-                        </AllCheckedContext.Provider> : 
-                            <></>) :
-                        <></> }
-                </tbody>
-            </table>
+            { isLoading ? 
+                <Spinner /> :
+                <table className="table">
+                    <tbody>
+                        <tr className="p-2">
+                            <th>
+                                <div>
+                                    <input id="select-all" className="form-check-input" type="checkbox" 
+                                            name="select-all" ref={allCheckedRef} checked={allChecked}
+                                            onChange={() => toggleAllJobsSelection(allChecked, setAllChecked,
+                                                                                isChecked, setIsChecked,
+                                                                                setSelectedJobCount,
+                                                                                allCheckedRef)} />
+                                </div>
+                            </th>
+                            <th>Job ID</th>
+                            <th>Title</th>
+                            <th className="text-center">Days Old</th>
+                            <th>Status</th>
+                        </tr>
+                        { Object.keys(jobs).includes("data") ?
+                            (Object.keys(jobs.data).includes("Jobs") ?
+                            <AllCheckedContext.Provider 
+                                value={[setAllChecked, isChecked, setIsChecked,
+                                        selectedJobCount, setSelectedJobCount, allCheckedRef]}>
+                                <Jobs jobsList={jobs.data.Jobs} />
+                            </AllCheckedContext.Provider> : 
+                                <></>) :
+                            <></> }
+                    </tbody>
+                    { Object.keys(jobs).includes("data") && Object.keys(jobs.data).includes("Jobs") &&
+                        jobs.data.Jobs.length == 0 ? 
+                        <caption>
+                            <NoResults />
+                        </caption> : <></>
+                    }
+                </table>
+            }
         </main>
     );
 }
