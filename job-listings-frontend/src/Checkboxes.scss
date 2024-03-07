@@ -1,0 +1,23 @@
+@import "Variables";
+
+.form-check-input   {
+    border-color: $gray-A;
+    border-width: 1.5px;
+    cursor: pointer;
+    width: 1.15em;
+    height: 1.15em;
+    transition: $transition-secs;
+
+    &:checked, &:indeterminate  {
+        background-color: $lime !important;
+        border-color: $lime !important;
+    }
+
+    &:active, &:focus, &:hover    {
+        border-color: $lime-dark;
+    }
+
+    &:focus {
+        box-shadow: 0 0 0 0.25rem rgba($lime, 0.25);
+    }
+}
