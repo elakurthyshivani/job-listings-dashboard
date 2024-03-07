@@ -1,4 +1,5 @@
 @import "Variables";
+@import "Checkboxes";
 
 main    {
     background-color: white;
@@ -42,7 +43,7 @@ main    {
         background: rgba($gray-EF, 0.5);
 
         a {
-            color: limegreen !important;
+            color: $limegreen !important;
             font-weight: bold;
         }
     }
