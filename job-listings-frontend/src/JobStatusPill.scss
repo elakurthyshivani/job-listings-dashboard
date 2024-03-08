@@ -1,0 +1,39 @@
+@import "Variables";
+
+span.rounded-pill  {
+    padding: 4px 8px;
+    border-radius: $border-radius;
+    font-size: 0.8em;
+    font-weight: bold;
+    transition: $transition-secs;
+}
+
+span.rounded-pill.new  {
+    color: $job-status-new-pill-color;
+    background-color: rgba($job-status-new-pill-color, $job-status-pill-background-opacity);
+
+    &:hover {
+        color: $job-status-hover-new-pill-color;
+        background-color: rgba($job-status-new-pill-color, $job-status-pill-hover-background-opacity);
+    }
+}
+
+span.rounded-pill.applied  {
+    color: $job-status-applied-pill-color;
+    background-color: rgba($job-status-applied-pill-color, $job-status-pill-background-opacity);
+
+    &:hover {
+        color: $job-status-hover-applied-pill-color;
+        background-color: rgba($job-status-applied-pill-color, $job-status-pill-hover-background-opacity);
+    }
+}
+
+span.rounded-pill.not-applied  {
+    color: $job-status-not-applied-pill-color;
+    background-color: rgba($job-status-not-applied-pill-color, $job-status-pill-background-opacity);
+
+    &:hover {
+        color: $job-status-not-applied-pill-color;
+        background-color: rgba($job-status-not-applied-pill-color, $job-status-pill-hover-background-opacity);
+    }
+}

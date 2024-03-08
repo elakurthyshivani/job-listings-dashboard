@@ -3,22 +3,22 @@
 
 main    {
     background-color: white;
-
-    header {
-    padding-top: 16px;
-    padding-bottom: 24px;
-    }
 }
 
 .table th   {
     font-variant: small-caps;
     color: $gray-6;
-    padding: 0px 12px 4px 12px;
+    padding: 12px;
+}
+
+.table thead    {
+    border-top: 1px solid $gray-D;   
+    // border-bottom: 1px solid $gray-D;
 }
 
 .table tr {
     transition: $transition-secs;
-    border-bottom: 1px solid #DDD;
+    border-bottom: 1px solid $gray-D;
 
     td div  {
         padding: 4px 12px !important;
@@ -32,7 +32,7 @@ main    {
     }
 
     th div {
-        padding: 4px 8px !important;
+        padding: 0px 8px !important;
     }
 }
 
@@ -51,19 +51,6 @@ main    {
 
 .table tr.new  {
     font-weight: bold;
-} 
-
-.table td.job-status span.rounded-pill  {
-    padding: 4px 8px;
-    border-radius: $border-radius;
-    font-size: 0.8em;
-    font-weight: bold;
-    cursor: pointer;
-    transition: $transition-secs;
-}
-
-.table tr td.job-status span.rounded-pill .edit-icon {
-    font-size: 0.9em;
 }
 
 .table td.days-old  {
@@ -76,53 +63,4 @@ main    {
 
 .table td.within-month {
     color: darkorange;
-}
-
-.table tr.new td.job-status span.rounded-pill  {
-    color: $job-status-new-pill-color;
-    background-color: rgba($job-status-new-pill-color, $job-status-pill-background-opacity);
-
-    &:hover {
-        color: $job-status-hover-new-pill-color;
-        background-color: rgba($job-status-new-pill-color, $job-status-pill-hover-background-opacity);
-    }
-}
-
-.table tr.applied td.job-status span.rounded-pill  {
-    color: $job-status-applied-pill-color;
-    background-color: rgba($job-status-applied-pill-color, $job-status-pill-background-opacity);
-
-    &:hover {
-        color: $job-status-hover-applied-pill-color;
-        background-color: rgba($job-status-applied-pill-color, $job-status-pill-hover-background-opacity);
-    }
-}
-
-.table tr.not-applied td.job-status span.rounded-pill  {
-    color: $job-status-not-applied-pill-color;
-    background-color: rgba($job-status-not-applied-pill-color, $job-status-pill-background-opacity);
-
-    &:hover {
-        color: $job-status-not-applied-pill-color;
-        background-color: rgba($job-status-not-applied-pill-color, $job-status-pill-hover-background-opacity);
-    }
-}
-
-.table tr td div.icons {
-    padding: 0px !important;
-}
-.table tr .icon  {
-    color: tomato;
-    padding: 4px;
-    border-radius: 50%;
-    width: 28px;
-    height: 28px;
-    font-size: 0.8em;
-    cursor: pointer;
-    transition: $transition-secs;
-
-    &:hover {
-        color: rgb(205, 55, 28);
-        background-color: $gray-D;
-    }
 }

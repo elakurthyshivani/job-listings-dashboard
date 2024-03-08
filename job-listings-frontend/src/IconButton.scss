@@ -1,0 +1,15 @@
+@import "Variables";
+
+.icon  {
+    padding: 4px;
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    font-size: 0.8em;
+    cursor: pointer;
+    transition: $transition-secs;
+
+    &:hover {
+        background-color: $gray-D;
+    }
+}

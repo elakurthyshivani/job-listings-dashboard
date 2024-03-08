@@ -1,0 +1,45 @@
+@import "Variables";
+
+main header {
+    padding-top: 16px;
+    padding-bottom: 16px;
+}
+
+.jobs-selected  {
+    .jobs-selected-count  {
+        color: $lime-dark;
+        font-size: 1.25em;
+    }
+
+    font-variant: small-caps;
+    font-size: 0.9em;
+}
+
+.dropdown   {
+    button  {
+        background-color: $blue !important;
+        border: none;
+        border-radius: $border-radius;
+        color: white;
+        font-variant: small-caps;
+        font-weight: bold;
+        transition: $transition-secs;
+    }
+
+    button:hover, button:focus, button:active    {
+        background-color: $lime !important;
+        color: $gray-6;
+    }
+
+    .dropdown-menu .rounded-pill  {
+        cursor: pointer;
+    }
+}
+
+.icon.delete-all    {
+    color: tomato;
+    
+    &:hover {
+        color: rgb(205, 55, 28);
+    }
+}
