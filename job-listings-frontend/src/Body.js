@@ -78,7 +78,13 @@ function Body() {
                                                                 showJobs = {showJobs} />) : 
                         companies.error } */}
                 </nav>
-                <JobListings />
+                { 
+                    currCompany === "" ? 
+                        <div className="col-10 h-100 bg-light">
+                            &nbsp;
+                        </div> : 
+                        <JobListings /> }
+                {/* <JobListings /> */}
             </CompanyNameContext.Provider>
         </div>
     );
