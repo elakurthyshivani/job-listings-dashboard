@@ -1,0 +1,21 @@
+@import "Variables";
+
+.toast  {
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+}
+
+.toast-header   {
+    background-color: rgba(ghostwhite, 0.85);
+}
+
+.toast button.btn-close   {
+    font-size: 0.75em !important;
+    margin: 0;
+    padding: 8px;
+    border-radius: $border-radius-circle;
+    transition: $transition-secs;
+
+    &:hover {
+        background-color: $gray-D;
+    }
+}

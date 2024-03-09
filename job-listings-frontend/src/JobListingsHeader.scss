@@ -15,22 +15,22 @@ main header {
     font-size: 0.9em;
 }
 
-.dropdown   {
-    button  {
-        background-color: $blue !important;
-        border: none;
-        border-radius: $border-radius;
-        color: white;
-        font-variant: small-caps;
-        font-weight: bold;
-        transition: $transition-secs;
-    }
+.dropdown > button  {
+    background-color: $blue !important;
+    border: none;
+    border-radius: $border-radius;
+    color: white;
+    font-variant: small-caps;
+    font-weight: bold;
+    transition: $transition-secs;
 
-    button:hover, button:focus, button:active    {
+    &:hover, &:focus, &:active    {
         background-color: $lime !important;
         color: $gray-6;
     }
+}
 
+.dropdown   {
     .dropdown-menu .rounded-pill  {
         cursor: pointer;
     }
