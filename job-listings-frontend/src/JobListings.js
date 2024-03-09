@@ -21,7 +21,7 @@ function JobListings() {
     const [selectedJobCount, setSelectedJobCount] = useState(0);
 
     const companyName = useContext(CompanyNameContext);
-    const url = "https://job-listings-dashboard.azurewebsites.net/companies/" + companyName;
+    const url = "https://job-listings-dashboard.azurewebsites.net/api/companies/" + companyName + "/jobs";
 
     const [jobs, setJobs] = useState("");
     const [isLoading, setIsLoading] = useState(false);
