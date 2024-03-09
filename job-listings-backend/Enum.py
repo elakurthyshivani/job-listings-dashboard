@@ -10,3 +10,8 @@ class JobStatus(Enum):
     NOT_APPLIED = 0
     NEW = 1
     APPLIED = 2
+
+    def validStatus(status):
+        return status == JobStatus.NOT_APPLIED.value or \
+                status == JobStatus.NEW.value or \
+                status == JobStatus.APPLIED.value
