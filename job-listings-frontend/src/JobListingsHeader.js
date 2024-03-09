@@ -28,7 +28,8 @@ export function JobListingsHeader()    {
                             <div className="pe-4">
                                 <div className="dropdown">
                                     <button className="btn px-3 py-2" type="button" id="dropdownMenuButton1" 
-                                            data-bs-toggle="dropdown" aria-expanded="false">
+                                            data-bs-toggle="dropdown" aria-expanded="false" 
+                                            data-bs-toggle-second="tooltip" title="Edit status for selected jobs">
                                         Edit Status
                                     </button>
                                     <ul className="dropdown-menu pt-1 px-1 pb-2" aria-labelledby="dropdownMenuButton1">
@@ -41,13 +42,14 @@ export function JobListingsHeader()    {
                                                 </li>
                                                 { status.length - 1 == index ?
                                                     <></> : 
-                                                    <li><hr class="dropdown-divider" /></li> }
+                                                    <li><hr className="dropdown-divider" /></li> }
                                             </>)}
                                     </ul>
                                 </div>
                             </div>
                             <div className="d-flex align-items-center">
-                                <IconButton class="delete-all" tooltip="Delete all selected jobs" icon={faTrashCan} />
+                                <IconButton customClass="delete-all" tooltip="Delete all selected jobs" 
+                                        icon={faTrashCan} />
                             </div>
                         </div>
                     </div> :

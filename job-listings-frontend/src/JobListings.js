@@ -1,17 +1,13 @@
 import {React} from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
 import { useState, useEffect, useContext, useRef } from 'react';
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-// import { faTrashCan } from '@fortawesome/free-regular-svg-icons';
 
 import './JobListings.scss';
 import { CompanyNameContext, CheckedContext, HeaderContext } from './Context';
-// import { status } from './Constants';
 import { JobListingsHeader } from './JobListingsHeader';
 import { Jobs, toggleAllJobsSelection } from './Jobs';
 import Spinner from './Spinner';
 import NoResults from './NoResults';
-// import JobStatusPill from './JobStatusPill';
 
 function JobListings() {
     // Used to maintain state for the checkboxes

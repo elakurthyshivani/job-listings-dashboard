@@ -1,7 +1,6 @@
-import {React} from 'react';
-import 'bootstrap/dist/css/bootstrap.css';
+import {React, useState, useEffect, useContext, useMemo} from 'react';
 import bootstrap from 'bootstrap/dist/js/bootstrap.bundle.min';
-import { useState, useEffect, useContext, useMemo } from 'react';
+import 'bootstrap/dist/css/bootstrap.css';
 import './Body.scss';
 import JobListings from './JobListings';
 import { CompanyNameContext } from './Context';
@@ -22,9 +21,11 @@ function NavItem(props) {
 function Body() {
     // To use Bootstrap Tooltips
     useEffect(() => {
-        const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
-        const tooltipList = tooltipTriggerList.map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl));
-      }, []);
+        const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
+        const tooltipTriggerList2 = document.querySelectorAll('[data-bs-toggle-second="tooltip"]');
+        [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl));
+        [...tooltipTriggerList2].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl));
+    }, []);
 
     const [currCompany, setCurrCompany] = useState(useContext(CompanyNameContext));
     const [companies, setCompanies] = useState("");
@@ -84,7 +85,6 @@ function Body() {
                             &nbsp;
                         </div> : 
                         <JobListings /> }
-                {/* <JobListings /> */}
             </CompanyNameContext.Provider>
         </div>
     );
