@@ -29,7 +29,7 @@ function Body() {
     const [currCompany, setCurrCompany] = useState(useContext(CompanyNameContext));
     const [companies, setCompanies] = useState("");
     const getCompanies = async () => {
-        const response = await fetch('https://job-listings-dashboard.azurewebsites.net/companies/', {
+        const response = await fetch('https://job-listings-dashboard.azurewebsites.net/api/companies/', {
             headers: {
                 "Access-Control-Allow-Origin": "*",
                 Accept: 'application/json'
