@@ -6,9 +6,10 @@ import JobListings from './JobListings';
 import { CompanyNameContext } from './Context';
 
 const siteTypes = {"own-site-job-listings": "Own Site", 
-                    "group-1-job-listings": "Search App", 
+                    "group-1-job-listings": "NG Content", 
                     "workday-job-listings": "Workday",
-                    "eightfold-ai-job-listings": "Eightfold.ai"};
+                    "eightfold-ai-job-listings": "Eightfold.ai",
+                    "phs-job-listings": "PHS"};
 
 function NavItem(props) {
     return (
