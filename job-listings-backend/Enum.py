@@ -4,6 +4,8 @@ class CosmosContainers(Enum):
     WORKDAY_JOB_LISTINGS = "workday-job-listings"
     GROUP_1_JOB_LISTINGS = "group-1-job-listings"
     OWN_SITE_JOB_LISTINGS = "own-site-job-listings"
+    EIGHTFOLD_AI_JOB_LISTINGS = "eightfold-ai-job-listings"
+    PHS_JOB_LISTINGS = "phs-job-listings"
     CONTAINER_NAMES = "container-names"
 
 class JobStatus(Enum):
