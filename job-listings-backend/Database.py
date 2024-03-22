@@ -26,12 +26,15 @@ def getContainerNames(container):
 
 
 def getCompanyNames(container):
-    companyNames = container.query_items("SELECT c.id, c.ContainerName FROM c ORDER BY c.id ASC",
+    companyNames = container.query_items("SELECT c.id, c.ContainerName, c.NewJobsCount FROM c ORDER BY c.id ASC",
                                          enable_cross_partition_query = True)
     companyNames = [company for company in companyNames]
     containerNames = {containerName: [] for containerName in getContainerNames(container)}
-    for companyName in companyNames:
-        containerNames[companyName["ContainerName"]].append(companyName["id"])
+    for row in companyNames:
+        containerNames[row["ContainerName"]].append({
+            "CompanyName": row["id"],
+            "NewJobsCount": row["NewJobsCount"]
+        })
     return containerNames
 
 
