@@ -13,10 +13,13 @@ const siteTypes = {"own-site-job-listings": "Own Site",
 
 function NavItem(props) {
     return (
-        <button className={props.companyName == props.currentCompany? "nav-link active w-100 fw-bold" : "nav-link w-100 fw-bold" }
+        <button className={"nav-link w-100 fw-bold d-flex justify-content-between " + (props.companyName == props.currentCompany? "active" : "") }
                 key={props.companyName} type="button" 
                 name={props.companyName} role="tab"
-                onClick={props.showJobs}>{props.companyName}</button>
+                onClick={props.showJobs}>
+            <span>{props.companyName}</span>
+            {props.newJobsCount > 0 ? <span className="new-jobs-count-pill d-flex justify-content-center align-items-baseline">{props.newJobsCount}</span> : <></>}
+        </button>
     );
 }
 
@@ -51,7 +54,11 @@ function Body() {
     }, []);
 
     const showJobs = (e) => {
-        setCurrCompany(e.target.name);
+        console.log(e.target.localName);
+        if(e.target.localName == "button")
+            setCurrCompany(e.target.name);
+        else
+            setCurrCompany(e.target.parentNode.name);
     };
 
     return (
@@ -67,9 +74,10 @@ function Body() {
                         Object.keys(companies.data).map(category => 
                             <>
                                 <div className="w-100 fw-bold pb-2 pt-3 site-category">{siteTypes[category]}</div>
-                                { companies.data[category].map((companyName) => <NavItem key={companyName}
-                                                                                    companyName = {companyName} 
+                                { companies.data[category].map((company) => <NavItem key={company["CompanyName"]}
+                                                                                    companyName = {company["CompanyName"]} 
                                                                                     currentCompany = {currCompany}
+                                                                                    newJobsCount = {company["NewJobsCount"]}
                                                                                     showJobs = {showJobs} />) }
                             </> ) : 
                         companies.error}

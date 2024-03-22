@@ -44,3 +44,11 @@ button  {
     background-color: transparent;
     border: none;
 }
+
+.new-jobs-count-pill    {
+    background-color: tomato;
+    color: white;
+    width: 24px;
+    height: 24px;
+    border-radius: $border-radius-circle;
+}
