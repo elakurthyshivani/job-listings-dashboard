@@ -70,7 +70,7 @@ function JobListings() {
 
     return (
         <>
-            <main className="table-responsive col h-100 w-100 p-4">
+            <main className="table-responsive col-xl-10 col-lg-9 col-md-8 col-12 h-100 p-4">
                 <HeaderContext.Provider value={[isChecked, selectedJobCount, isLoading, setIsLoading, jobs]}>
                     <ToastContext.Provider value={[toastMessages, setToastMessages,
                                                     totalToastsCount, setTotalToastsCount]}>

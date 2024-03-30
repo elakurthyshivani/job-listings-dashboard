@@ -7,6 +7,7 @@ import { status } from './Constants';
 import JobStatusPill from './JobStatusPill';
 import { IconButton } from './IconButton';
 import { addToast } from './Toast';
+import { EnableBootstrapTooltips } from './EnableBootstrapTooltips';
 
 const updateStatusSelectedJobs = (companyName, status, headerContext, toastContext) => {
     const [isChecked, selectedJobCount, isLoading, setIsLoading, jobs] = headerContext;
@@ -127,6 +128,8 @@ const deleteSelectedJobs = (companyName, headerContext, toastContext) => {
 
 
 export function JobListingsHeader()    {
+    EnableBootstrapTooltips();
+
     const companyName = useContext(CompanyNameContext);
     const [isChecked, selectedJobCount, isLoading, setIsLoading, jobs] = useContext(HeaderContext);
     const headerContext = useContext(HeaderContext);
