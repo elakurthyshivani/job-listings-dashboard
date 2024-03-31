@@ -3,8 +3,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import './IconButton.scss';
 import { CompanyNameContext, HeaderContext, ToastContext } from './Context';
+import { EnableBootstrapTooltips } from './EnableBootstrapTooltips';
 
 export function IconButton(props)    {
+    EnableBootstrapTooltips();
+
     const companyName = useContext(CompanyNameContext);
     const headerContext = useContext(HeaderContext);
     const toastContext = useContext(ToastContext);

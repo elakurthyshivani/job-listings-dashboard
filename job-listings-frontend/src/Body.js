@@ -1,9 +1,11 @@
 import {React, useState, useEffect, useContext, useMemo} from 'react';
-import bootstrap from 'bootstrap/dist/js/bootstrap.bundle.min';
 import 'bootstrap/dist/css/bootstrap.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import './Body.scss';
 import JobListings from './JobListings';
 import { CompanyNameContext } from './Context';
+import { EnableBootstrapTooltips } from './EnableBootstrapTooltips';
 
 const siteTypes = {"own-site-job-listings": "Own Site", 
                     "group-1-job-listings": "NG Content", 
@@ -24,13 +26,7 @@ function NavItem(props) {
 }
 
 function Body() {
-    // To use Bootstrap Tooltips
-    useEffect(() => {
-        const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
-        const tooltipTriggerList2 = document.querySelectorAll('[data-bs-toggle-second="tooltip"]');
-        [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl));
-        [...tooltipTriggerList2].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl));
-    }, []);
+    EnableBootstrapTooltips();
 
     const [currCompany, setCurrCompany] = useState(useContext(CompanyNameContext));
     const [companies, setCompanies] = useState("");
@@ -62,11 +58,17 @@ function Body() {
     };
 
     return (
-        <div className="d-flex align-items-start w-100 h-100">
+        <div className="outer-container d-flex align-items-start w-100 h-100 flex-row flex-wrap">
             <CompanyNameContext.Provider value={useMemo(() => currCompany)}>
-                <nav className="nav col-2 h-100 py-3 px-4" role="tablist" aria-orientation="vertical">
-                    <div className="logo-container d-flex justify-content-center align-items-center">
+                <nav className="nav col-xl-2 col-lg-3 col-md-4 col-12 h-100 py-3 px-4" role="tablist" aria-orientation="vertical">
+                    <div className="w-100 logo-container d-flex justify-content-between align-items-center">
                         <img src="favicon.png" />
+                        <span>
+                            <span className="add-new-company icon d-flex justify-content-center align-items-center"
+                                data-bs-toggle="tooltip" title="Add a new company">
+                                <a href="/companies"><FontAwesomeIcon icon={faPlus} /></a>
+                            </span>
+                        </span>
                         {/* <div className="fw-bold">Job Listings Dashboard</div> */}
                     </div>
                     
@@ -91,7 +93,7 @@ function Body() {
                 </nav>
                 { 
                     currCompany === "" ? 
-                        <div className="col-10 h-100 bg-light">
+                        <div className="home-div col-xl-10 col-lg-9 col-md-8 col-12 h-100 bg-light">
                             &nbsp;
                         </div> : 
                         <JobListings /> }
