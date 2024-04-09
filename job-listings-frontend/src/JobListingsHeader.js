@@ -1,5 +1,7 @@
 import {React, useContext } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrashCan } from '@fortawesome/free-regular-svg-icons';
+import { faArrowUpRightFromSquare } from '@fortawesome/free-solid-svg-icons';
 
 import './JobListingsHeader.scss';
 import { CompanyNameContext, HeaderContext, ToastContext } from './Context';
@@ -137,7 +139,18 @@ export function JobListingsHeader()    {
 
     return (
         <header className="d-flex justify-content-between">
-            <div className="fw-bold fs-2 col-6 d-flex align-items-center">{companyName}</div>
+            <div className="fw-bold fs-2 col-6 d-flex align-items-center">
+                {companyName}
+                { Object.keys(jobs).includes("data") && Object.keys(jobs.data).includes("URL") ?
+                    <span className="open-career-site icon d-flex justify-content-center align-items-center ms-3"
+                        data-bs-toggle="tooltip" title="Go to career site">
+                        <a href={jobs.data.URL} target="_blank" rel="noreferrer">
+                            <FontAwesomeIcon icon={faArrowUpRightFromSquare} />
+                        </a>
+                    </span> :
+                    <></>
+                }
+            </div>
             <div className="fe-2 col-6">
                 { selectedJobCount > 0 && !isLoading ?  
                     <div className="pe-3 py-2 ps-3">
@@ -176,7 +189,18 @@ export function JobListingsHeader()    {
                             </div>
                         </div>
                     </div> :
-                    <></> 
+                    Object.keys(jobs).includes("data") && Object.keys(jobs.data).includes("Jobs") ?
+                        <div className="pe-3 py-2 ps-3">
+                            <div className="d-flex justify-content-end align-items-center">
+                                <div className="pe-4 jobs-selected">
+                                    <div>
+                                        <span className="fw-bold jobs-selected-count">{jobs.data.Jobs.length}</span> 
+                                        &nbsp; Jobs Present
+                                    </div>
+                                </div>
+                            </div> 
+                        </div> :
+                        <></>
                 }
             </div>
         </header>

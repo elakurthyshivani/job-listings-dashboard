@@ -33,7 +33,7 @@ export function Job(props)  {
 
             {/* Column: Job Title */}
             <td className="col-6">
-                <div><a href={props.job.Link} target="_blank">{ props.job.Title }</a></div>
+                <div><a href={props.job.Link} target="_blank" rel="noreferrer">{ props.job.Title }</a></div>
             </td>
 
             {/* Column: Days Old */}
@@ -45,7 +45,11 @@ export function Job(props)  {
             {/* Column: Job Status */}
             <td className="job-status">
                 <div>
-                    <JobStatusPill status={props.job.Status} />
+                    { Object.keys(props.job).includes("AppliedOn") ? 
+                        <JobStatusPill status={props.job.Status} tooltip={"Applied on " + props.job.AppliedOn } />: 
+                        <JobStatusPill status={props.job.Status} />
+                    }
+                    
                     {/* <span className={statusClasses[props.job.Status] + " rounded-pill"}>
                         { status[props.job.Status] }
                     </span> */}
