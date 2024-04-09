@@ -20,7 +20,7 @@ function NavItem(props) {
                 name={props.companyName} role="tab"
                 onClick={props.showJobs}>
             <span>{props.companyName}</span>
-            {props.newJobsCount > 0 ? <span className="new-jobs-count-pill d-flex justify-content-center align-items-baseline">{props.newJobsCount}</span> : <></>}
+            {props.newJobsCount > 0 ? <span className="new-jobs-count-pill d-flex justify-content-center align-items-center">{props.newJobsCount}</span> : <></>}
         </button>
     );
 }
@@ -66,7 +66,6 @@ function Body() {
                         <span>
                             <span className="add-new-company icon d-flex justify-content-center align-items-center"
                                 data-bs-toggle="tooltip" title="Add a new company">
-                                <a href="/companies"><FontAwesomeIcon icon={faPlus} /></a>
                             </span>
                         </span>
                         {/* <div className="fw-bold">Job Listings Dashboard</div> */}
