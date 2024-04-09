@@ -2,9 +2,12 @@ scripts/
 
 # Flask
 .venv/
-.vscode/
+
 job-listings-backend/__pycache__/
 job-listings-backend/.deployment
+
+# Functions
+.vscode/
 
 # React
 # dependencies
